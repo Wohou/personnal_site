@@ -1,3 +1,5 @@
+var code = "";
+
 var TxtRotate = function(el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
@@ -54,3 +56,26 @@ window.onload = function() {
   css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
   document.body.appendChild(css);
 };
+
+// on keypress
+window.addEventListener("keypress", function (event) {
+  // if the code is already correct, reset it
+  if (code === "chokbar") {
+    code = "";
+    document.getElementById("chokbar").style.display = "none";
+  }
+  // if the key is a letter, add it to the code
+  if (event.key >= "a" && event.key <= "z") {
+    code += event.key;
+  } else {
+    return;
+  }
+  // if the code is invalid, reset it
+  if (!"chokbar".startsWith(code)) {
+    code = "";
+    return;
+  }
+  if (code === "chokbar") {
+    document.getElementById("chokbar").style.display = "block";
+  }
+});
